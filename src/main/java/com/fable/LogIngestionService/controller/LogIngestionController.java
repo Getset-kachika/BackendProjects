@@ -15,7 +15,7 @@ public class LogIngestionController {
     private static final Logger logger = LoggerFactory.getLogger(LogIngestionController.class);
     @Autowired
     LogIngestionService logIngestionService;
-        @PostMapping("/read/log")
+        @PostMapping("/log")
         @Async
         public void logsControllerAsync(@RequestBody DataNode data) {
             try {

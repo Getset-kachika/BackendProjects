@@ -1,10 +1,8 @@
 package com.fable.LogIngestionService.model;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class LogEvent {
-    @JsonProperty("unix_timestamp")
-    private long unixTimeStamp;
+    private long unix_timestamp;
     protected DataNode dataNode;
     public DataNode getData() {
         return dataNode;
@@ -14,11 +12,11 @@ public class LogEvent {
         this.dataNode = dataNode;
     }
     public long getUnix_timestamp() {
-        return unixTimeStamp;
+        return unix_timestamp;
     }
 
-    public void setUnix_timestamp(long unixTimeStamp) {
-        this.unixTimeStamp = unixTimeStamp;
+    public void setUnix_timestamp(long unix_timestamp) {
+        this.unix_timestamp = unix_timestamp;
     }
 
 }
