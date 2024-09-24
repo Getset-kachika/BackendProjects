@@ -19,9 +19,9 @@ public class LogsBufferService {
 
     @Autowired
     private GCPService gcpService;
-    private final int  initialBufferSize = 20000;
+    private final int  initialBufferSize = 30000;
 
-    private final int flushItAt = 2000;
+    private final int flushItAt = 10000;
     private LinkedBlockingQueue<String> buffer;
 
     private final List<String> extraBuffer = new ArrayList<>();
@@ -73,7 +73,7 @@ public class LogsBufferService {
                     batchData.add(jsonData);
                 }
             }
-            logger.info("Flushed {} log events to GCP", batchData.size());
+            logger.info("Batch size to be flushed {} ", batchData.size());
             if (!batchData.isEmpty()) {
                 gcpService.publishLogsToGcp(batchData);
                 logger.info("Flushed {} log events to GCP",batchData.size());

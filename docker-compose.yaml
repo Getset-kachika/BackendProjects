@@ -1,0 +1,8 @@
+#version: "3.8"
+#services:
+#  java-app:
+#    image: 'log-ingestion-service-docke:latest'
+#    secrets:
+#      - gcp_credentials
+#    environment:
+#      -
