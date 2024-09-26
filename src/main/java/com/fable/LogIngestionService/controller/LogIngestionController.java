@@ -16,7 +16,7 @@ public class LogIngestionController {
     @Autowired
     LogIngestionService logIngestionService;
         @PostMapping("/log")
-        @Async("asyncExecutor")
+        //@Async("asyncExecutor")
         public void logsControllerAsync(@RequestBody DataNode data) {
             try {
                 logger.info("logsControllerAsync");

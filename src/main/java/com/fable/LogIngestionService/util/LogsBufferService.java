@@ -23,16 +23,16 @@ public class LogsBufferService {
 
     @Autowired
     private GCPService gcpService;
-    private final int  initialBufferSize = 30000;
+    private final int  initialBufferSize = 50000;
 
-    private final int flushItAt = 10000;
+    private final int flushItAt = 30000;
     private LinkedBlockingQueue<String> buffer;
 
     private final List<String> extraBuffer = new ArrayList<>();
 
     private final ReentrantLock lock = new ReentrantLock();
 
-    private volatile boolean isFlushing = false;//added volatile
+    private volatile boolean isFlushing = false;
 
     LogsBufferService(){
         this.buffer = new LinkedBlockingQueue<>(initialBufferSize);
