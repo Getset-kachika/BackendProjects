@@ -1,6 +1,7 @@
 package com.fable.LogIngestionService.util;
 
 import com.fable.LogIngestionService.service.GCPService;
+import io.opencensus.trace.Link;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,6 +10,9 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ArrayBlockingQueue;
+import java.util.concurrent.ConcurrentLinkedDeque;
+import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.LinkedBlockingQueue;
 import java.util.concurrent.locks.ReentrantLock;
 
@@ -41,13 +45,14 @@ public class LogsBufferService {
         } else if (buffer.size() >= flushItAt && !isFlushing) {
             callGCPService();
         }
+        logger.info("BFS = "+buffer.size());
     }
 
     public void handleIncomingRequests(String logEventString){
         extraBuffer.add(logEventString);
         logger.warn("Buffer is full, handling incoming request");
     }
-    @Scheduled(fixedRate = 10000)
+    @Scheduled(fixedRate = 5000)
     private void flushLoop() {
         if (!buffer.isEmpty() && !isFlushing) {
             callGCPService();

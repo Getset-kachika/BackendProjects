@@ -16,9 +16,10 @@ public class LogIngestionController {
     @Autowired
     LogIngestionService logIngestionService;
         @PostMapping("/log")
-        @Async
+        @Async("asyncExecutor")
         public void logsControllerAsync(@RequestBody DataNode data) {
             try {
+                logger.info("logsControllerAsync");
                 logIngestionService.processLogs(data);
             } catch (Exception e) {
                 logger.error("Error publishing log data: {}", e.getMessage(), e);
