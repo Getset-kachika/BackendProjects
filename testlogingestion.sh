@@ -3,7 +3,7 @@
 URL="http://localhost:8080/log" 
 login="login.json"
 
-TOTAL_REQUESTS=15000
+TOTAL_REQUESTS=210000
 
 CONCURRENCY=10
 
